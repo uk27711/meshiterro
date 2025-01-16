@@ -1,4 +1,4 @@
-class PostimagesController < ApplicationController
+class PostImagesController < ApplicationController
 
   def new
     @post_images = PostImage.new
@@ -13,11 +13,12 @@ class PostimagesController < ApplicationController
   end
 
   def index
-    @post_images = PostImage.find(params[:id])
+    @post_images = PostImage.all
   end
 
   def show
-    @post_image = PostImage.new(post_image_params)
+    @post_image = PostImage.find(params[:id])
+    @post_comment = PostComment.new
   end
   
   # 投稿データのストロングパラメータ
@@ -33,6 +34,4 @@ def destroy
   post_image = PostImage.new(post_image_params)
   post_image.destroy
   redirect_to post_images_path
-end
-
 end
